@@ -1,0 +1,8 @@
+{
+    "policy_groups": [
+        "networking",
+        "webview",
+        "push-notification-client"
+    ],
+    "policy_version": 1.3
+}

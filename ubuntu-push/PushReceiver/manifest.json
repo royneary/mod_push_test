@@ -1,0 +1,19 @@
+{
+    "name": "com.ubuntu.developer.culrich.pushreceiver",
+    "description": "description of PushReceiver",
+    "architecture": "all",
+    "title": "PushReceiver",
+    "hooks": {
+        "PushReceiver": {
+            "apparmor": "PushReceiver.apparmor",
+            "desktop": "PushReceiver.desktop"
+        },
+        "PushReceiverHelper": {
+            "apparmor": "PushReceiverHelper.apparmor",
+            "push-helper": "PushReceiverHelper.json"
+        }
+    },
+    "version": "0.1",
+    "maintainer": "Christian Ulrich <christian@rechenwerk.net>",
+    "framework": "ubuntu-sdk-15.04"
+}

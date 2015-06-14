@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=PushReceiver
+Exec=qmlscene $@ Main.qml
+Icon=PushReceiver.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+
