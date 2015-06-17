@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="PushReceiver.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PushReceiver"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="ContentPanel">
+        <TextBlock Name="channelTextBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="No channel received yet" VerticalAlignment="Top" Height="111" Width="380" FontSize="18" SelectionChanged="tokenTextBlock_SelectionChanged"/>
+        <TextBlock Name="notificationTextBlock" HorizontalAlignment="Left" Margin="10,121,0,0" TextWrapping="Wrap" Text="No notification received yet" VerticalAlignment="Top" Height="509" Width="380" SelectionChanged="notificationTextBlock_SelectionChanged" FontSize="18"/>
+    </Grid>
+</Page>
