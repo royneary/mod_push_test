@@ -17,7 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeBadge |
+    application.applicationIconBadgeNumber = 0;
+    
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeNone |
+                                                    UIUserNotificationTypeBadge |
                                                     UIUserNotificationTypeSound |
                                                     UIUserNotificationTypeAlert);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
@@ -51,7 +54,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSString *base64Token = [deviceToken base64EncodedStringWithOptions:0];
     NSLog(@"APNS device token (Base64 encoded): %@", base64Token);
     ViewController *vc = (ViewController *)self.window.rootViewController;
@@ -69,10 +73,28 @@ didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 }
 
 - (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo {
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler {
     NSLog(@"Push received: %@", userInfo);
-    ViewController *vc = (ViewController *)self.window.rootViewController;
-    vc.txtInfo.text = [NSString stringWithFormat:@"Push received:\n%@", userInfo];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ViewController *vc = (ViewController *)self.window.rootViewController;
+        vc.txtInfo.text = [NSString stringWithFormat:@"Push received:\n%@", userInfo];
+    });
+    
+    NSNumber *contentAvailable = userInfo[@"aps"][@"content-available"];
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    
+    if([contentAvailable intValue] == 1 && state != UIApplicationStateActive)
+    { 
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        localNotification.alertBody = @"XMPP event!";
+        localNotification.soundName = UILocalNotificationDefaultSoundName;
+        //localNotification.applicationIconBadgeNumber = 1;
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+    }
+
+    handler(UIBackgroundFetchResultNewData);
 }
 
 @end

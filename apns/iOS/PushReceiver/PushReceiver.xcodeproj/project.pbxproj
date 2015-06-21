@@ -169,6 +169,11 @@
 					AAEF0F9E1B275B5C00AD69DA = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = KX76M68E8V;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					AAEF0FB71B275B5C00AD69DA = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -425,6 +430,7 @@
 				AAEF0FC41B275B5C00AD69DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AAEF0FC51B275B5C00AD69DA /* Build configuration list for PBXNativeTarget "PushReceiverTests" */ = {
 			isa = XCConfigurationList;
@@ -433,6 +439,7 @@
 				AAEF0FC71B275B5C00AD69DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
