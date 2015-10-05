@@ -91,10 +91,10 @@ MainView {
                         id: notificationText
                         wrapMode: Text.Wrap
                         text:
-                            "last_subscription_sender: " + (last_subscription_sender?last_subscription_sender:"N/A") + "\n" +
-                            "subscription_count: " + (subscription_count?subscription_count:"N/A") + "\n" +
-                            "last_message_sender: " + (last_message_sender?last_message_sender:"N/A") + "\n" +
-                            "message_count: " + (message_count?message_count:"N/A")
+                            "last-subscription-sender: " + (notificationModel.get(0)["last-subscription-sender"]?notificationModel.get(0)["last-notification-sender"]:"N/A") + "\n" +
+                            "subscription-count: " + (notificationModel.get(0)["subscription-count"]?notificationModel.get(0)["subscription-count"]:"N/A") + "\n" +
+                            "last-message-sender: " + (notificationModel.get(0)["last-message-sender"]?notificationModel.get(0)["last-message-sender"]:"N/A") + "\n" +
+                            "message-count: " + (notificationModel.get(0)["message-count"]?notificationModel.get(0)["message-count"]:"N/A")
                     }
                 }
 
